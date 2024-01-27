@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="css/main.css">
+	<title>MarketTracker - Настройки</title>
+</head>
+<body>
+	<header>
+		<div class="status">
+			<span></span>
+			<div></div>
+		</div>
+		<nav>
+			<button data-tab-button="platinum" class="active">
+				<img src="images/icons/platinum.svg" alt="platinum">
+				<div>Платина</div>
+			</button>
+			<button data-tab-button="news">
+				<img src="images/icons/news.svg" alt="news">
+				<div>Новости</div>
+			</button>
+			<button data-tab-button="sets">
+				<img src="images/icons/sets.svg" alt="sets">
+				<div>Комплекты</div>
+			</button>
+			<button data-tab-button="check">
+				<img src="images/icons/check.svg" alt="check">
+				<div>Чек-лист</div>
+			</button>
+		</nav>
+		<div class="choose">
+			<div class="online">ОНЛАЙН</div>
+			<div class="ingame">В ИГРЕ</div>
+			<div class="invisible">НЕВИДИМЫЙ</div>
+		</div>
+		<div class="right">
+			<div class="selected"></div>
+			<img src="images/icon.png" alt="icon">
+		</div>
+	</header>
+	<main>
+		<div data-tab-name="platinum" class="tab active">
+			<h1 class="module">[PlatinumChecker]</h1>
+			<form id="formNewItem">
+				<input type="text" id="inputNewItem" placeholder="Введите название предмета..." autocomplete="off" spellcheck="false">
+				<div id="outputNewItems"></div>
+				<button type="submit"><img src="/images/icons/arrow-down.svg"></button>
+			</form>
+			<div>
+				<h2 class="head">Ваши товары</h2>
+				<div class="btnsBlock">
+					<div>
+						<button id="actionsListBtn">Статистика</button>
+						<button id="updateMarketPrices">Обновить цены</button>
+					</div>
+					<div>
+						<button id="syncOrderList">Синхронизировать</button>
+						<button class="clearHist" id="clearPlatinumBuysTable">Очистить</button>
+					</div>
+				</div>
+				<div id="tablePlatinumBuys" class="messages" style="display: none;">
+					<div class="header">
+						<div>Предмет</div>
+						<div>Рынок</div>
+						<div>Цена</div>
+						<div>Количество</div>
+						<div>Ранг/Подтип</div>
+						<div>Действие</div>
+					</div>
+					<div class="body"></div>
+				</div>
+				<div id="nullTablePlatinumBuys">У вас нет активных сделок...</div>
+			</div>
+			<div>
+				<h2 class="head">История сделок</h2>
+				<div class="btnsBlock">
+					<button id="blackListBtn">Черный список</button>
+					<button class="clearHist" id="clearPlatinumTable">Очистить</button>
+				</div>
+				<div id="tablePlatinum" class="messages" style="display: none;">
+					<div class="header">
+						<div>Предмет</div>
+						<div>Выгода</div>
+						<div>Эффективность</div>
+						<div>Продавец</div>
+						<div>Время</div>
+						<div>Действие</div>
+					</div>
+					<div class="body"></div>
+				</div>
+				<div id="nullTablePlatinum">Сделок, что подошли бы вашим параметрам еще не обнаружено...</div>
+			</div>
+			<div>
+				<h2 class="head">Настройки</h2>
+				<div class="box">
+					<div>
+						<div>
+							<input type="checkbox" id="activePlatinum">
+							<label for="activePlatinum">Включить модуль</label>
+							<span class="tooltip">
+							    <span class="tooltipText">Если галочка стоит - модуль находится в работе.</span>
+							</span>
+						</div>
+						<div>
+							<input type="checkbox" id="openTabPlatinum">
+							<label for="openTabPlatinum">Автоматически открывать вкладку с товаром</label>
+							<span class="tooltip">
+							    <span class="tooltipText">При нахождение выгодной сделки - вкладка товара будет открыта автоматически.</span>
+							</span>
+						</div>
+						<div>
+							<input type="checkbox" id="instCopyPlatinum">
+							<label for="instCopyPlatinum">Автоматически копировать сообщение продавцу</label>
+							<span class="tooltip">
+							    <span class="tooltipText">При нахождение выгодной сделки - текст для отправки продавцу будет автоматически помещен в буфер обмена.</span>
+							</span>
+						</div>
+						<div>
+							<input type="checkbox" id="ignoreNoPopPlatinum">
+							<label for="ignoreNoPopPlatinum">Игнорировать не популярные товары</label>
+							<span class="tooltip">
+							    <span class="tooltipText">Если у проверяемого товара за последние 48 часов было продано менее 16 экземпляров - товар будет проигнорирован.</span>
+							</span>
+						</div>
+						<div>
+							<input type="checkbox" id="autoUpdatePricePlatinum">
+							<label for="autoUpdatePricePlatinum">Автоматически обновлять и изменять цены</label>
+							<span class="tooltip">
+							    <span class="tooltipText">Каждые 5 минут цены на преобретенные вами товары будут обновляться и изменяться автоматически, в зависимости от текущего уровня рынка.</span>
+							</span>
+						</div>
+					</div>
+					<div>
+						<div class="input-block">
+							<input type="number" id="minPricePlatinum" min="0">
+							<label for="minPricePlatinum">Минимальня цена товара для покупки</label>
+						</div>
+						<div class="input-block">
+							<input type="number" id="maxPricePlatinum" min="0">
+							<label for="maxPricePlatinum">Максимальная цена товара для покупки</label>
+						</div>
+						<div class="input-block">
+							<input type="number" id="minEfficiPlatinum" min="1">
+							<label for="minEfficiPlatinum">Минимальная эффективность сделки</label>
+							<span class="tooltip">
+							    <span class="tooltipText">Минимальная эффективность указывается в процентном коэффициенте от текущей минимальной цены на рынке.</span>
+							</span>
+						</div>
+						<div class="input-block">
+							<input type="number" id="minBenefitPlatinum" min="1">
+							<label for="minBenefitPlatinum">Минимальная выгода сделки</label>
+							<span class="tooltip">
+							    <span class="tooltipText">Минимальная выгода указывается в минимальном количестве платины, что вы хотите получать после перепродажи.</span>
+							</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div data-tab-name="news" class="tab">
+			<h1 class="module">[NewsChecker]</h1>
+			<div>
+				<h2 class="head">Активные игровые события</h2>
+				<div class="box">
+					<div>
+						<h5 class="head">Архонты</h5>
+						<div id="archonNewsBlock"></div>
+						<h5 class="head">Вылазка</h5>
+						<div id="sortieNewsBlock"></div>
+						<h5 class="head">События</h5>
+						<div id="eventsNewsBlock"></div>
+						<h5 class="head">Тревоги</h5>
+						<div id="alertsNewsBlock"></div>
+						<h5 class="head">Торговец бездны</h5>
+						<div id="traderNewsBlock"></div>
+						<h5 class="head">Вторжения</h5>
+						<div id="invasionsNewsBlock"></div>
+						<h5 class="head">Ночная волна</h5>
+						<div id="nightwaveNewsBlock"></div>
+					</div>
+					<div>
+						<h5 class="head">Новости</h5>
+						<div id="newsNewsBlock"></div>
+						<h5 class="head">Циклы</h5>
+						<div id="cyclesNewsBlock"></div>
+						<h5 class="head">Предложения Дарво</h5>
+						<div id="dailyDealsNewsBlock"></div>
+						<h5 class="head">Предложение Тешина</h5>
+						<div id="teshinDealsNewsBlock"></div>
+						<h5 class="head">Разрывы</h5>
+						<div id="fissuresNewsBlock"></div>
+					</div>
+				</div>
+			</div>
+			<div>
+				<h2 class="head">Настройки</h2>
+				<div class="box">
+					<div>
+						<div>
+							<input type="checkbox" id="eventsNews">
+							<label for="eventsNews">Начало новый событий</label>
+						</div>
+						<div>
+							<input type="checkbox" id="traderNews">
+							<label for="traderNews">Прибытие торговца бездны</label>
+						</div>
+						<div>
+							<input type="checkbox" id="archonNews">
+							<label for="archonNews">Обновление Архонта</label>
+						</div>
+						<div>
+							<input type="checkbox" id="sortieNews">
+							<label for="sortieNews">Обновление вылазки</label>
+						</div>
+						<div>
+							<input type="checkbox" id="alertsNews">
+							<label for="alertsNews">Сигналы тревоги</label>
+						</div>
+						<div>
+							<input type="checkbox" id="dailyDealsNews">
+							<label for="dailyDealsNews">Новые предложения Дарво</label>
+						</div>
+						<div>
+							<input type="checkbox" id="teshinDealsNews">
+							<label for="teshinDealsNews">Новые предложения Тешина</label>
+						</div>
+						<div>
+							<input type="checkbox" id="newsNews">
+							<label for="newsNews">Новость от warframe.com</label>
+						</div>
+					</div>
+					<div>
+
+						<div class="drop-list" data-drop-point="invasions">
+							<div class="arrow"></div>
+							<input class="checkbox" id="activeInvasionsNews" type="checkbox">
+							<label for="activeInvasionsNews">Появление новых вторжений</label>
+							<div class="drop-content">
+								<div>
+									<input class="checkbox" id="rewInjecNews" type="checkbox">
+									<label for="rewInjecNews">Инжектор детонита</label>
+								</div>
+								<div>
+									<input class="checkbox" id="rewFildNews" type="checkbox">
+									<label for="rewFildNews">Филдрон</label>
+								</div>
+								<div>
+									<input class="checkbox" id="rewMutatNews" type="checkbox">
+									<label for="rewMutatNews">Мутагенная масса</label>
+								</div>
+								<div>
+									<input class="checkbox" id="rewCoordNews" type="checkbox">
+									<label for="rewCoordNews">Координаты муталист Алада v</label>
+								</div>
+								<div>
+									<input class="checkbox" id="rewOtherNews" type="checkbox">
+									<label for="rewOtherNews">Другие</label>
+								</div>
+							</div>
+						</div>
+						<div class="drop-list" data-drop-point="nightwave">
+							<div class="arrow"></div>
+							<input class="checkbox" id="activeNightwaveNews" type="checkbox">
+							<label for="activeNightwaveNews">Новые задания ночной волны</label>
+							<div class="drop-content">
+								<div>
+									<input class="checkbox" id="rew1000News" type="checkbox">
+									<label for="rew1000News">Задания на 1000 репутации</label>
+								</div>
+								<div>
+									<input class="checkbox" id="rew4500News" type="checkbox">
+									<label for="rew4500News">Задания на 4500 репутации</label>
+								</div>
+								<div>
+									<input class="checkbox" id="rew7000News" type="checkbox">
+									<label for="rew7000News">Задания на 7000 репутации</label>
+								</div>
+							</div>
+						</div>
+						<div class="drop-list" data-drop-point="cycles">
+							<div class="arrow"></div>
+							<input class="checkbox" id="activeCyclesNews" type="checkbox">
+							<label for="activeCyclesNews">Циклы мира</label>
+							<div class="drop-content">
+								<div>
+									<input class="checkbox" id="cycleCambionNews" type="checkbox">
+									<label for="cycleCambionNews">Смена цикла в Камбионском Дрейфе</label>
+								</div>
+								<div>
+									<input class="checkbox" id="cycleVallisNews" type="checkbox">
+									<label for="cycleVallisNews">Смена температуры в Долине Сфер</label>
+								</div>
+								<div>
+									<input class="checkbox" id="cycleEarthNews" type="checkbox">
+									<label for="cycleEarthNews">Смена времени суток на Земле</label>
+								</div>
+								<div>
+									<input class="checkbox" id="cycleCetusNews" type="checkbox">
+									<label for="cycleCetusNews">Смена времени суток на Равнинах Эйдолона</label>
+								</div>
+								<div>
+									<input class="checkbox" id="cycleZarimanNews" type="checkbox">
+									<label for="cycleZarimanNews">Смена цикла на Заримане</label>
+								</div>
+							</div>
+						</div>
+						<div class="drop-list" data-drop-point="fissures">
+							<div class="arrow"></div>
+							<input class="checkbox" id="activeFissuresNews" type="checkbox">
+							<label for="activeFissuresNews">Новые разрывы бездны</label>
+							<div class="drop-content">
+								<div>
+									<input class="checkbox" id="missDefNews" type="checkbox">
+									<label for="missDefNews">Оборона</label>
+								</div>
+								<div>
+									<input class="checkbox" id="missCleanNews" type="checkbox">
+									<label for="missCleanNews">Зачистка</label>
+								</div>
+								<div>
+									<input class="checkbox" id="missSurvNews" type="checkbox">
+									<label for="missSurvNews">Выживание</label>
+								</div>
+								<div>
+									<input class="checkbox" id="missSaboNews" type="checkbox">
+									<label for="missSaboNews">Диверсия</label>
+								</div>
+								<div>
+									<input class="checkbox" id="missInterNews" type="checkbox">
+									<label for="missInterNews">Перехват</label>
+								</div>
+								<div>
+									<input class="checkbox" id="missMDefNews"type="checkbox">
+									<label for="missMDefNews">Мобильная оборона</label>
+								</div>
+								<div>
+									<input class="checkbox" id="missFailNews" type="checkbox">
+									<label for="missFailNews">Сбой</label>
+								</div>
+								<div>
+									<input class="checkbox" id="missEspiNews" type="checkbox">
+									<label for="missEspiNews">Шпионаж</label>
+								</div>
+								<div>
+									<input class="checkbox" id="missSaveNews" type="checkbox">
+									<label for="missSaveNews">Спасение</label>
+								</div>
+								<div>
+									<input class="checkbox" id="missCaptNews" type="checkbox">
+									<label for="missCaptNews">Захват</label>
+								</div>
+								<div>
+									<input class="checkbox" id="missExcNews" type="checkbox">
+									<label for="missExcNews">Раскопки</label>
+								</div>
+								<div>
+									<input class="checkbox" id="missVolNews" type="checkbox">
+									<label for="missVolNews">Налет</label>
+								</div>
+								<div>
+									<input class="checkbox" id="missSkiNews" type="checkbox">
+									<label for="missSkiNews">Стычка</label>
+								</div>
+								<div>
+									<input class="checkbox" id="missOrfNews" type="checkbox">
+									<label for="missOrfNews">Орфикс</label>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>	
+		</div>
+		<div data-tab-name="sets" class="tab">
+			<h1 class="module">[SetsChecker]</h1>
+			<div>
+				<h2 class="head">Найденные комплекты</h2>
+				<div class="btnsBlock">
+					<select id="selectSetsSort" disabled>
+						<option value="a-z" selected>Алфавит</option>
+						<option value="diff">Разница цен</option>
+						<option value="parts">Кол-во. частей</option>
+					</select>
+					<button id="startSetsSearch">Поиск</button>
+				</div>
+				<div id="tableSets" class="messages" style="display: none;">
+					<div class="header">
+						<div>Комплект</div>
+						<div>Цена комплекта</div>
+						<div>Цена при покупки по частям</div>
+						<div>Частей в комплекте</div>
+						<div>Разница цен</div>
+					</div>
+					<div class="body"></div>
+				</div>
+				<div id="searchSetsPB">
+					<div></div>
+				</div>
+				<div id="nullTableSets">Начните поиск...</div>
+			</div>
+		</div>
+		<div data-tab-name="check" class="tab">
+			<h1 class="module">[CheckList]</h1>
+			<div>
+				<form id="checkList">
+					<input type="text" id="checkListText" placeholder="Введите текст...">
+					<select id="checkListType">
+						<option value="day" selected>Ежедневные</option>
+						<option value="week">Еженедельные</option>
+					</select>
+					<button type="submit" class="btn submit">Добавить</button>
+				</form>
+				<div class="checkLists">
+					<div class="day"></div>
+					<div class="week"></div>
+				</div>
+			</div>
+		</div>
+		<div id="activity"></div>
+		<div class="leftBox">
+			<a href="https://warframe.market/ru/" target="_blank" class="market">
+				<img src="images/icons/market.png"></img>
+			</a>
+			<a href="https://discord.gg/qdWDXfW72K" target="_blank" class="discord">
+				<img src="images/icons/discord.svg"></img>
+			</a>
+			<a href="https://vk.com/qworte" target="_blank" class="vk">
+				<img src="images/icons/vk.svg"></img>
+			</a>
+			<button id="openSettModal">
+				<img src="images/icons/sett.svg">
+			</button>
+		</div>
+		<a class="copyright">Copyright © Qworte, 2021-2023</a>
+	</main>
+	<div id="modals">
+		<div class="overlay"></div>
+		<div id="actionsListModal" class="modal">
+			<div class="head">
+				<div>Статистика покупок и продаж</div>
+				<button></button>
+			</div>
+			<div class="body">
+				<div id="actionsStats"></div>
+				<div id="actionsList" style="display: none;">
+					<div class="header">
+						<div>Предмет</div>
+						<div>Платина</div>
+						<div>Дата</div>
+						<div>Удалить</div>
+					</div>
+					<div class="body"></div>
+				</div>
+				<div id="nullActionsList">Статистика пока пуста...</div>
+			</div>
+		</div>
+		<div id="blackListModal" class="modal">
+			<div class="head">
+				<div>Черный список предметов</div>
+				<button></button>
+			</div>
+			<div class="body">
+				<div>
+					<form id="formBlackList">
+						<input list="inputBlackList" placeholder="Введите название предмета...">
+						<datalist id="inputBlackList"></datalist>
+						<button type="submit" class="btn submit">Добавить</button>
+					</form>
+				</div>
+				<div id="blackList" style="display: none;">
+					<div class="header">
+						<div>Предмет</div>
+						<div>Удалить</div>
+					</div>
+					<div class="body"></div>
+				</div>
+				<div id="nullBlackList">Черный список предметов пуст...</div>
+			</div>
+		</div>
+		<div id="settModal" class="modal">
+			<div class="head">
+				<div>Настройки расширения</div>
+				<button></button>
+			</div>
+			<div class="body">
+				<div>
+					<input class="checkbox" id="inject" type="checkbox">
+					<label for="inject">Отображать дату на МР аукционах</label>
+					<input class="checkbox" id="animation" type="checkbox">
+					<label for="animation">Отображать фоновую анимацию</label>
+					<input class="checkbox" id="notifActive" type="checkbox">
+					<label for="notifActive">Отображать уведомления</label>
+				</div>
+				<div>
+					<label>Громкость уведомлений:</label>
+					<input type="range" min="0" max="1" step="0.01" id="notifVolume">
+				</div>
+			</div>
+		</div>
+		<div id="buyModal" class="modal">
+			<div class="head">
+				<div>Подтверждение покупки</div>
+				<button></button>
+			</div>
+			<div class="body"></div>
+		</div>
+	</div>
+	<div id="blocked">
+		<div>
+			<h2>Кажется вы не авторизированы на warframe.market</h2>
+			<p>Пожалуйста перейдите по ссылке <a href="https://warframe.market/ru/auth/signin">warframe.market</a> и завершите авторзацию для продолжения работы приложения.</p>
+			<p>В течение 5 минут после успешной авторзации на сайте - вы сможете продолжить использование.</p>
+		</div>
+	</div>
+</body>
+<script src="options.js"></script>
+</html>

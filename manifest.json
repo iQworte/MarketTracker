@@ -1,0 +1,40 @@
+{
+   "short_name": "MT",
+   "author": "Qworte",
+   "background": {
+      "scripts": [ 
+         "background.js" 
+      ],
+      "persistent": true
+   },
+   "description": "Приятная утилита, что поможет тебе в покорение игры warframe",
+   "options_ui": {
+      "open_in_tab": true,
+      "page": "options.html"
+   },
+   "browser_action": {
+      "default_popup": "popup.html"
+   },
+   "icons": {
+      "16": "images/icon.png",
+      "32": "images/icon.png",
+      "48": "images/icon.png",
+      "64": "images/icon.png",
+      "128": "images/icon.png"
+   },
+   "manifest_version": 2,
+   "name": "Market Tracker",
+   "permissions": [
+      "cookies",
+      "storage",
+      "notifications",
+      "background",
+      "<all_urls>",
+      "webRequest",
+      "webRequestBlocking",
+      "webNavigation",
+      "tabs"
+   ],
+   "update_url": "https://clients2.google.com/service/update2/crx",
+   "version": "3.12.1"
+}

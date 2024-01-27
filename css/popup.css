@@ -1,0 +1,70 @@
+body {
+	font-family: Arial;
+	background: #121214;
+	color: #fff;
+}
+
+main {
+	position: relative;
+	border: solid 2px #a6aada;
+	width: 300px;
+	padding: 10px;
+	padding-top: 0;
+}
+
+.nav {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+}
+
+.nav > a {
+	background: #a6aada;
+	position: absolute;
+    height: 18px;
+    width: 18px;
+    padding-bottom: 2px;
+}
+
+.nav > a:first-child {
+	clip-path: polygon(100% 0, 100% calc(100% - 7px), calc(100% - 7px) 100%, 0 100%, 0 0);
+	left: 0;
+	padding-right: 2px;
+}
+
+.nav > a:last-child {
+	clip-path: polygon(100% 0, 100% 100%, 7px 100%, 0 calc(100% - 7px), 0 0);
+	right: 0;
+	padding-left: 2px;
+}
+
+.search img {
+	height: 55px;
+	display: block;
+	margin: 0 auto;
+}
+
+.search form {
+	display: flex;
+}
+
+#inputWikiSearch {
+	outline: none;
+	margin-right: 3px;
+	clip-path: polygon(7px 0%, 100% 0, 100% 100%, 0 100%, 0% 7px);
+	border: none;
+	background: #efefef;
+	height: 26px;
+	width: 100%;
+	font-size: 15px;
+}
+
+#btnWikiSearch {
+	outline: none;
+	clip-path: polygon(0 0, 100% 0, 100% calc(100% - 7px), calc(100% - 7px) 100%, 0 100%);
+	border: none;
+	background: #a6aada;
+	height: 28px;
+	font-size: 15px;
+}
